@@ -3,12 +3,14 @@
 {% block title %}Список заказов{% endblock %}
 
 {% block content %}
-    <ul>
     {% for order in data.orders %}
 {#        <li><a href="{% url 'order_url' order.id %}">{{ order.title }}</a></li>#}
         {% include 'order_element.html' with element=order %}
         {% empty %}
-        <li>Список пуст</li>
+        <div class="medical-care">Вам не помочь</div>
     {% endfor %}
-    </ul>
+{% endblock %}
+
+{% block page-scroll %}
+    <div class="page-number"><- 1 2 3 4 5 6 -></div>
 {% endblock %}

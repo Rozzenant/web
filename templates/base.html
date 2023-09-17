@@ -7,13 +7,20 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% block head %} {% endblock %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/examp.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <div class="main-text">
-        <h1>BMSTU-forever</h1>
+    <div class="wrapper">
+    <header class="main-style"></header>
+    <main>
         {% block content %}{% endblock %}
+    </main>
+        {% block page-scroll %}{% endblock %}
+    <footer class="main-style">
+    </footer>
     </div>
 </body>
 </html>

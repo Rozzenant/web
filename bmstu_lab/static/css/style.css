@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.main-style {
+    padding: 10px;
+    /*font: 900 60px "Roboto", sans-serif;*/
+    color: #fff;
+    /*text-align: center;*/
+    /*text-shadow: 4px 2px 0 rgba(0, 0, 0, 0.2);*/
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(45deg, #b0d4f1, #8fd3f4);
+    flex-basis: 85px;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 50px;
+    padding-bottom: 30px;
+
+}
+
+.medical-care {
+    display: flex;
+    flex-flow: column wrap;
+    background: white;
+    width: calc(20% - 16px);
+    min-height: 50%;
+    height: 50%;
+}
+
+.medicine-service-description {
+    flex: 1;
+    margin-top: 10px;
+    /* background-color: brown; */
+    word-break: break-all;
+    min-height: 65px;
+    max-height: 65px;
+    font: 300 22px "Roboto", sans-serif;
+    color: #658692;
+    text-align: left;
+    overflow: hidden
+}
+
+.medicine-service-link {
+    margin-top: 7px;
+    min-height: 60px;
+    max-height: 60px;
+    font: 500 24px "Roboto", sans-serif;
+    color: #08c3dc;
+    overflow: hidden;
+}
+
+.img-service {
+    object-fit: cover;
+}
+
+.page-number {
+    height: 60px;
+    width: 100%;
+    background: linear-gradient(45deg, #48eee1, #94b6ce);
+    align-self: flex-end;
+    text-align: center;
+}
+
+footer {
+    background: linear-gradient(45deg, #a8a8a8, #94b6ce);
+    flex-basis: 50px;
+    font: 300 12px "Roboto", sans-serif;
+    text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
