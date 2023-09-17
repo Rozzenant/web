@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %} Номер заказа: {{ data.id }} {% endblock %}
-
-{% block head %} <link rel="stylesheet" type="text/css" href="{% static 'css/examp.css' %}"> {% endblock %}
 
 {% block content %}
     <div class="time">Today: {{ data.current_date }}</div>
