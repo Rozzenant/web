@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World Test 0</title>
+</head>
+<body>
+    <div class="main-text">
+        BMSTU-Text
+        Today is {{ data.current_date }}
+    </div>
+
+    <div class="list">
+        <ul>
+            {% for var in data.list %}
+                {% if var == 'Python' %}
+                    <li>We like {{ var }}</li>
+
+                {% elif var == 'BMSTU' %}
+                    <li>We live in {{ var }}</li>
+                {% else %}
+                    <li>We dont like -> {{ var }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} Ввод текста {% endblock %}
+
+{% block content %}
+    <form action="sendTextPOST" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input name="text" type="text"><br><br>
+        <input type="submit" value="Submit" >
+    </form>
+{% endblock %}
