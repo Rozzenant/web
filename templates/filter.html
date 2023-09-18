@@ -1,14 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Список заказов{% endblock %}
-
-{% block search %}
-    <form method="GET" action="{% url 'filter' %}">
-        {% csrf_token %}
-        <input class="search" type="search" name="filter" placeholder="Поиск">
-        <button type="submit">🔍</button>
-    </form>
-{% endblock %}
+{% block title %} Фильтр {% endblock %}
 
 {% block content %}
     {% for order in data.orders %}
@@ -19,6 +11,10 @@
     {% endfor %}
 {% endblock %}
 
-{% block page-scroll %}
-    <div class="page-number"></div>
+{% block search %}
+    <form method="GET" action="{% url 'filter' %}">
+        {% csrf_token %}
+        <input class="search" type="search" name="filter" placeholder="Поиск" value={{ data.value }}>
+        <button type="submit">🔍</button>
+    </form>
 {% endblock %}

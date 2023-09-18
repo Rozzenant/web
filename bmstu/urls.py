@@ -21,8 +21,9 @@ from bmstu_lab import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', views.hello),
-    path('', views.GetOrders),
+    path('', views.GetOrders, name='main-page'),
     path('order/<int:id>', views.GetOrder, name='order_url'),
     path('sendText/', views.sendText, name='sendText'),
-    path('sendText/sendTextPOST', views.sendTextPOST)
+    path('sendText/sendTextPOST', views.sendTextPOST),
+    path('filter/', views.filter, name='filter'),
 ]

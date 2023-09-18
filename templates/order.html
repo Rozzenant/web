@@ -3,6 +3,14 @@
 {% block title %} Номер заказа: {{ data.id }} {% endblock %}
 
 {% block content %}
-    <div class="time">Today: {{ data.current_date }}</div>
-    <div class="order-text">Информация о заказе № {{ data.id }}</div>
+    <div class="wrapper-order">
+        <img class="img-service" src="{{ data.link }}" alt="" width="360px" height="360px">
+        <div class="order-text">
+            <p>Информация о медицинской проблеме № {{ data.id }}</p>
+            <br>
+            <p>{{ data.title }}</p>
+            <br>
+            <p>{{ data.description }}</p>
+        </div>
+    </div>
 {% endblock %}
