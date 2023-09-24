@@ -16,8 +16,8 @@ def hello(request):
             'list': ['Python', 'BMSTU', 'Django']
         }
     })
-def GetOrders(request):
-    return render(request, 'orders.html', data)
+# def GetOrders(request):
+#     return render(request, 'orders.html', data)
 
 def GetOrder(request, id):
     fast_data = data['data']['orders'][id - 1]
@@ -41,7 +41,10 @@ def sendTextPOST(request):
     })
 
 def filter(request):
-    search = request.GET.get('filter').lower()
+    if (request.GET.get('filter') is not None):
+        search = request.GET.get('filter').lower()
+    else:
+        return render(request, 'filter.html', data)
 
     fast_data = data['data']['orders']
     data_filter = {'data':{'orders':[]}}
