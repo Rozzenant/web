@@ -3,10 +3,10 @@
     <img class="img-service" src="{{ procedure_card.Image_URL }}" alt="{{ procedure_card.Procedure_Name }}"
          width="267px" height="200px">
     </a>
-    <form method="GET" action="{% url 'filter' %}">
+    <form method="POST" action="{% url 'delete_procedure' %}">
         {% csrf_token %}
         <button class="button-delete" type="submit" name="delete" value = {{procedure_card.Procedure_ID}}>❌</button>
     </form>
     <a class="medicine-service-link" href="{{ procedure_card.Procedure_ID }}">{{ procedure_card.Procedure_Name }} </a>
-{#    <div class="medicine-service-description">{{ element.description }}</div>#}
+    <div class="medicine-service-description">{{ element.description }}</div>
  </div>

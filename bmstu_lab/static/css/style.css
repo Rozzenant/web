@@ -43,6 +43,12 @@ body {
     width: 20%;
 }
 
+.reset {
+    display: flex;
+    font: 300 12px "Roboto", sans-serif;
+
+}
+
 button {
     height: 24px;
     align-self: center;
@@ -108,7 +114,7 @@ main {
 
 .medicine-service-description {
     flex: 1;
-    margin-top: 10px;
+    margin-top: 18px;
     /*min-height: 65px;*/
     /*max-height: 65px;*/
     font: 300 18px "Roboto", sans-serif;
@@ -137,6 +143,10 @@ main {
 .img-service {
     object-fit: cover;
     transition: transform 0.2s;
+}
+
+.img-service-one {
+    object-fit: cover;
 }
 
 .img-service:hover {

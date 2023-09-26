@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Главная страница {% endblock %}
+{% block title %}Главная страница{% endblock %}
 
 {% block content %}
     {% for procedure in data %}
@@ -11,9 +11,13 @@
 {% endblock %}
 
 {% block search %}
-    <form class="search-form" method="GET" action="{% url 'filter' %}">
+    <form class="search-form" method="GET" action="{% url 'main' %}">
         {% csrf_token %}
         <input class="search" type="search" name="filter" placeholder="Поиск" value={{ data.value }}>
         <button type="submit">🔍</button>
+    </form>
+    <form class="reset" method="GET" action="{% url 'main' %}">
+        {% csrf_token %}
+        <button type="submit" value="TRUE" name="reset">🛠️</button>
     </form>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}Список заказов{% endblock %}
 
 {% block search %}
-    <form method="GET" action="{% url 'filter' %}">
+    <form method="GET" action="{% url 'main' %}">
         {% csrf_token %}
         <input class="search" type="search" name="filter" placeholder="Поиск">
         <button type="submit">🔍</button>

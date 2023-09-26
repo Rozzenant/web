@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Активные процедуры{% endblock %}
+
+{% block content %}
+    {% for procedure in data %}
+        {% include 'procedure_element.html' with procedure_card=procedure %}
+        {% empty %}
+        <div class="medical-care-none">Мы пытаемся найти решение Вашей проблемы</div>
+    {% endfor %}
+{% endblock %}
+
+{% block search %}
+    <form class="search-form" method="GET" action="{% url 'main' %}">
+        {% csrf_token %}
+        <input class="search" type="search" name="filter" placeholder="Поиск" value={{ data.value }}>
+        <button type="submit">🔍</button>
+    </form>
+    <form class="reset" method="GET" action="{% url 'main' %}">
+        {% csrf_token %}
+        <button type="submit" value="TRUE" name="reset">🛠️</button>
+    </form>
+{% endblock %}

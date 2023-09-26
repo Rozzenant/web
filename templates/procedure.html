@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %} Номер процедуры: {{ data.Procedure_ID }} {% endblock %}
+{% block title %} Номер процедуры {{ data.Procedure_ID }} {% endblock %}
 
 {% block content %}
     <div class="wrapper-order">
-        <img class="img-service" src="{{ data.link }}" alt="" width="360px" height="360px">
+        <img class="img-service-one" src="{{ data.Image_URL }}" alt="" width="360px" height="360px">
         <div class="order-text">
             <p>Информация о медицинской проблеме № {{ data.Procedure_ID }}</p>
             <br>
             <p>{{ data.Procedure_Name }}</p>
             <br>
-            {{ data.description|safe }}
+            {{ data.Description|safe }}
         </div>
     </div>
 {% endblock %}
