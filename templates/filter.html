@@ -3,16 +3,15 @@
 {% block title %} Главная страница {% endblock %}
 
 {% block content %}
-    {% for order in data.orders %}
-{#        <li><a href="{% url 'order_url' order.id %}">{{ order.title }}</a></li>#}
-        {% include 'order_element.html' with element=order %}
+    {% for procedure in data %}
+        {% include 'procedure_element.html' with procedure_card=procedure %}
         {% empty %}
         <div class="medical-care-none">Мы пытаемся найти решение Вашей проблемы</div>
     {% endfor %}
 {% endblock %}
 
 {% block search %}
-    <form method="GET" action="{% url 'filter' %}">
+    <form class="search-form" method="GET" action="{% url 'filter' %}">
         {% csrf_token %}
         <input class="search" type="search" name="filter" placeholder="Поиск" value={{ data.value }}>
         <button type="submit">🔍</button>

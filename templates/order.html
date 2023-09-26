@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %} Номер заказа: {{ data.id }} {% endblock %}
+{% block title %} Номер процедуры: {{ data.Procedure_ID }} {% endblock %}
 
 {% block content %}
     <div class="wrapper-order">
         <img class="img-service" src="{{ data.link }}" alt="" width="360px" height="360px">
         <div class="order-text">
-            <p>Информация о медицинской проблеме № {{ data.id }}</p>
+            <p>Информация о медицинской проблеме № {{ data.Procedure_ID }}</p>
             <br>
-            <p>{{ data.title }}</p>
+            <p>{{ data.Procedure_Name }}</p>
             <br>
-            <p>{{ data.description }}</p>
+            {{ data.description|safe }}
         </div>
     </div>
 {% endblock %}
