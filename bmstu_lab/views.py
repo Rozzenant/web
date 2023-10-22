@@ -13,7 +13,7 @@ def GetProcedure(request, id):
     data['data']['Description'] = linebreaksbr(data['data']['Description']) # add indents to the text, as in the database
     return render(request, 'procedure.html', data)
 
-def main(request):
+def filter(request):
     if (request.GET.get('reset') is not None):
         resetStatus()
     data = {'data': MedicalProcedures.objects.order_by('Procedure_ID').filter(Status='1')}

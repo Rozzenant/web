@@ -5,9 +5,10 @@ from bmstu_lab import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.main, name='main'),
+    path('', views.filter, name='main'),
     path('<int:id>', views.GetProcedure, name='order_url'),
     path('delete/', views.deleteProcedure, name='delete_procedure')
+
 
     # path('hello/', views.hello),
     # path('', views.GetOrders, name='main-page'),
