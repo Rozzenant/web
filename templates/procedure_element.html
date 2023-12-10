@@ -1,6 +1,7 @@
 <div class="medical-care">
-    <a href="{{ procedure_card.Procedure_ID }}">
-    <img class="img-service" src="{{ procedure_card.Image_URL }}" alt="{{ procedure_card.Procedure_Name }}"
+    <a href="{% url 'main' %}{{ procedure_card.Procedure_ID }}">
+    <img class="img-service" src="{{ procedure_card.Image_URL.url }}" alt=
+            "{{ procedure_card.Procedure_Name }}"
          width="267px" height="200px">
     </a>
     <form method="POST" action="{% url 'delete_procedure' %}">
