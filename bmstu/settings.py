@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
     'bmstu_lab.apps.BmstuLabConfig',
 
     # DRF
     'rest_framework',
+    'corsheaders'
 ]
 
 # REST_FRAMEWORK = {
@@ -57,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'bmstu.urls'
@@ -144,3 +147,6 @@ AWS_ACCESS_KEY_ID = 'Kwa4wImQHChimMGZtv9x'
 AWS_SECRET_ACCESS_KEY = 'peMdKWxteOlDLDAfJdSB4vAOYhhAx6Cg1tm10uN6'
 AWS_S3_ENDPOINT_URL = 'http://127.0.0.1:9000'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True

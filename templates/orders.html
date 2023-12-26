@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Список заказов{% endblock %}
+{% block title %} Первая помощь при поражениях {% endblock %}
 
 {% block search %}
     <form method="GET" action="{% url 'main' %}">
@@ -11,8 +11,8 @@
 {% endblock %}
 
 {% block content %}
-    {% for procedure in data %}
-        {% include 'procedure_element.html' with element=procedure %}
+    {% for first_aid in data %}
+        {% include 'first_aid_element.html' with element=first_aid %}
         {% empty %}
         <div class="medical-care-none">Мы пытаемся найти решение Вашей проблемы</div>
     {% endfor %}

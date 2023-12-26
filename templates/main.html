@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %} Первая помощь при поражениях {% endblock %}
 
 {% block content %}
-    {% for procedure in data %}
-        {% include 'procedure_element.html' with procedure_card=procedure %}
+    {% for first_aid in data %}
+        {% include 'first_aid_element.html' with first_aid_card=first_aid %}
         {% empty %}
         <div class="medical-care-none">Мы пытаемся найти решение Вашей проблемы</div>
     {% endfor %}
@@ -13,7 +13,7 @@
 {% block search %}
     <form class="search-form" method="GET" action="{% url 'main' %}">
         {% csrf_token %}
-        <input class="search" type="search" name="filter" placeholder="Поиск" value={{ data.value }}>
+        <input class="search" type="search" name="filter" placeholder="Поиск" value={{ search }}>
         <button type="submit">🔍</button>
     </form>
     <form class="reset" method="GET" action="{% url 'main' %}">

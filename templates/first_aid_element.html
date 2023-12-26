@@ -1,0 +1,20 @@
+{% load static %}
+<div class="medical-care">
+    <a href="{% url 'main' %}{{ first_aid_card.First_aid_ID }}">
+    {% if first_aid_card.Image_URL %}
+    <img class="img-service" src="{{ first_aid_card.Image_URL.url|default:'img/defaultImg.png' }}" alt=
+            "{{ first_aid_card.First_aid_Name }}"
+         width="267px" height="200px">
+    {% else %}
+        <img class="img-service" src="{% static "resources/images/defaultImg.png" %}" alt=
+            "{{ first_aid_card.First_aid_Name }}"
+         width="267px" height="200px">
+    {% endif %}
+    </a>
+    <form method="POST" action="{% url 'delete_first_aid' %}">
+        {% csrf_token %}
+        <button class="button-delete" type="submit" name="delete" value = {{first_aid_card.First_aid_ID}}>❌</button>
+    </form>
+    <a class="medicine-service-link" href="{{ first_aid_card.First_aid_ID }}">{{ first_aid_card.First_aid_Name }} </a>
+    <div class="medicine-service-description">{{ element.description }}</div>
+ </div>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ First_aid_Name }}  {% endblock %}
+
+{% block content %}
+    <div class="wrapper-order">
+{#        <img class="img-service-one" src="{{ Image_URL }}" alt="" width="360px" height="360px">#}
+            {% if Image_URL %}
+                <img class="img-service-one" src="{{ Image_URL|default:'img/defaultImg.png' }}" alt=
+            "{{ first_aid_card.First_aid_Name }}"
+         width="267px" height="200px">
+    {% else %}
+        <img class="img-service-one" src="{% static "resources/images/defaultImg.png" %}" alt=
+            "{{ first_aid_card.First_aid_Name }}"
+         width="267px" height="200px">
+    {% endif %}
+        <div class="order-text">
+            <p>Информация о медицинской услуге № {{ First_aid_ID }}</p>
+            <br>
+            <p>{{ First_aid_Name }}</p>
+            <br>
+            {{ Description|safe }}
+        </div>
+    </div>
+{% endblock %}

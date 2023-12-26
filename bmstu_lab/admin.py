@@ -3,7 +3,7 @@ from .models import *
 
 
 admin.site.register(Users)
-admin.site.register(MedicalCategories)
-admin.site.register(MedicalProcedures)
-admin.site.register(CategoriesProcedures)
+admin.site.register(First_aid)
+admin.site.register(Trauma)
+admin.site.register(First_aid_Trauma)
 
