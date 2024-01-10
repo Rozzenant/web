@@ -92,13 +92,21 @@ class First_aid_List(APIView):
         """
         Возвращает список первых помощей
         """
-        filter_search = request.GET.get('filter_search')
+        filter_search = request.GET.get('search')
+        filter_from = request.GET.get('from')
+        filter_to = request.GET.get('to')
 
         first_aid = self.model_class.objects.all()
         first_aid = first_aid.filter(Status='1')
 
         if filter_search:
             first_aid = first_aid.filter(First_aid_Name__icontains=filter_search)
+
+        if filter_from:
+            first_aid = first_aid.filter(Price__gte=filter_from)
+
+        if filter_to:
+            first_aid = first_aid.filter(Price__lte=filter_to)
 
 
         serializer = self.serializer_class(first_aid.order_by('First_aid_ID'), many=True)
@@ -396,6 +404,43 @@ def put_first_aid_trauma(request, id, id2, format=None):
         data["Trauma_ID"] = serializer.data.get("Trauma_ID")
         return Response(data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def put_async(request, format=None):
+    """
+    Обновляет данные травмы асинхронно
+    """
+    expected_token = '7a4f891b2e613dca'
+
+    if request.method != 'PUT':
+        return Response({'error': 'Метод не разрешен'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    trauma_id = request.data.get('id')
+    result = request.data.get('result')
+    token = request.data.get('token')
+
+    if token != expected_token:
+        return Response({'error': 'Недопустимый токен'}, status=status.HTTP_403_FORBIDDEN)
+
+    if not trauma_id or not result :
+        return Response({'error': 'Отсутствуют необходимые данные'}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        trauma = Trauma.objects.get(Trauma_ID=trauma_id)
+    except Trauma.DoesNotExist:
+        return Response({'error': 'Травма не найдена'}, status=status.HTTP_404_NOT_FOUND)
+
+    if trauma.Confirmation_Doctor in ['Confirmed', 'Rejected']:
+        return Response({'details': 'Врач уже словесно подтвердил или отклонил заявку'}, status=status.HTTP_403_FORBIDDEN)
+
+    if 'Confirmed' in result:
+        trauma.Confirmation_Doctor = 'Confirmed'
+    elif 'Rejected' in result:
+        trauma.Confirmation_Doctor = 'Rejected'
+
+    trauma.save()
+    serializer = Trauma_Serializer(trauma, context={'show_traumas': False})
+    return Response(serializer.data)
 
 
 

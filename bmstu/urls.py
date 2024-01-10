@@ -9,22 +9,22 @@ from bmstu_lab import views
 
 router = routers.DefaultRouter()
 
-# schema_view = get_schema_view(
-#    openapi.Info(
-#       title="Snippets API",
-#       default_version='v1',
-#       description="Test description",
-#       terms_of_service="https://www.google.com/policies/terms/",
-#       contact=openapi.Contact(email="contact@snippets.local"),
-#       license=openapi.License(name="BSD License"),
-#    ),
-#    public=True,
-#    permission_classes=(permissions.AllowAny,),
-# )
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Snippets API",
+      default_version='v1',
+      description="Test description",
+      terms_of_service="https://www.google.com/policies/terms/",
+      contact=openapi.Contact(email="contact@snippets.local"),
+      license=openapi.License(name="BSD License"),
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     # path('', include(router.urls)),
-    # path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
     path('', views.filter, name='main'),
@@ -47,6 +47,7 @@ urlpatterns = [
     path(r'trauma/<int:id>', views.get_trauma),  # Просмотр одного поражения
     path(r'trauma/<int:id>/delete', views.delete_trauma),  # Удаление введенной заявки
     path(r'trauma/first_aid/<int:id>/delete', views.delete_first_aid_from_trauma, name='delete_first_aid_from_trauma'),
+    path(r'trauma/update_async/', views.put_async),
     # path(r'trauma/<int:id>/put', views.put_first_aid_in_trauma),  # Обновление полей повреждений
     # path(r'trauma/filter/', views.filter_trauma, name='filter_trauma'),
     #

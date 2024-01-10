@@ -3,9 +3,6 @@ from django.db.models import UniqueConstraint
 from django.utils import timezone
 
 
-# from django.db.models.signals import post_migrate
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
 
 class Users(models.Model):
     User_ID = models.IntegerField(primary_key=True)
@@ -55,6 +52,18 @@ class Trauma(models.Model):
     Moderator = models.ForeignKey(Users, related_name='ID_Moderator', on_delete=models.CASCADE, null=True, blank=True)
     Creator = models.ForeignKey(Users, related_name='ID_Creator', on_delete=models.CASCADE)
     First_aid_in_Trauma_List = models.ManyToManyField(First_aid, through='First_aid_Trauma')
+
+    Confirmation_Doctor = models.CharField(
+        max_length=20,
+        null=True,
+        choices=[
+            ('Pending', 'Ожидается'),
+            ('Confirmed', 'Подтверждено'),
+            ('Rejected', 'Отклонено'),
+        ],
+        default=None,
+        help_text='Verbal confirmation of the Trauma'
+    )
 
     def __str__(self):
         return f"{self.Trauma_ID}: {self.Creator}"

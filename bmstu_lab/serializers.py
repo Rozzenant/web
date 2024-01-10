@@ -31,27 +31,10 @@ class Trauma_Serializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         # show_time = self.context.get('show_time', True)
+        show_traumas = self.context.get('show_traumas', True)
 
-        # if instance.Date_Creation is not None:
-        #     if show_time:
-        #         # representation['Date_Creation'] = instance.Date_Creation.strftime('%Y-%m-%d %H:%M:%S')
-        #         pass
-        #     else:
-        #         representation['Date_Creation'] = instance.Date_Creation.strftime('%Y-%m-%d')
-        #
-        # if instance.Date_Approving is not None:
-        #     if show_time:
-        #         # representation['Date_Approving'] = instance.Date_Approving.strftime('%Y-%m-%d %H:%M:%S')
-        #         pass
-        #     else:
-        #         representation['Date_Approving'] = instance.Date_Approving.strftime('%Y-%m-%d')
-        #
-        # if instance.Date_End is not None:
-        #     if show_time:
-        #         # representation['Date_End'] = instance.Date_End.strftime('%Y-%m-%d %H:%M:%S')
-        #         pass
-        #     else:
-        #         representation['Date_End'] = instance.Date_End.strftime('%Y-%m-%d')
+        if not show_traumas:
+            representation.pop('First_aid_in_Trauma_List', None)
 
 
         return representation
@@ -60,6 +43,7 @@ class Trauma_Serializer(serializers.ModelSerializer):
         model = Trauma
         fields = ['Trauma_ID',
                   'Status',
+                  'Confirmation_Doctor',
                   'Creator_Name',
                   'Moderator_Name',
                   'Date_Creation',

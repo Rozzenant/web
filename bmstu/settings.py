@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@vzi=-bdw*lb1!_xvjkp53o(gi$w(e(952o6l2=&!%mz1oo+8o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['192.168.8.165', '*']
 
 
 # Application definition
@@ -146,6 +146,7 @@ AWS_STORAGE_BUCKET_NAME = 'static'
 AWS_ACCESS_KEY_ID = 'Kwa4wImQHChimMGZtv9x'
 AWS_SECRET_ACCESS_KEY = 'peMdKWxteOlDLDAfJdSB4vAOYhhAx6Cg1tm10uN6'
 AWS_S3_ENDPOINT_URL = 'http://127.0.0.1:9000'
+# AWS_S3_ENDPOINT_URL = 'http://192.168.8.165:9000'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
