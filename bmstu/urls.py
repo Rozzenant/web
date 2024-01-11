@@ -4,6 +4,7 @@ from rest_framework import permissions
 from django.urls import path, include
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from bmstu_lab import auth_session
 
 from bmstu_lab import views
 
@@ -33,9 +34,9 @@ urlpatterns = [
     #
     # API first_aid
     path(r'first_aid/', views.First_aid_List.as_view(), name='First_aid_List'),  # Список всех мед. помощей
-    path(r'first_aid/<int:pk>/', views.First_aid_Detail.as_view(), name='First_aid_Detail'),  # Одна мед. помощи
-    path(r'first_aid/<int:pk>/put/', views.First_aid_Detail.as_view(), name='First_aid_Detail-put'),  # Обновление мед. помощи
-    path(r'first_aid/create/', views.First_aid_Detail.as_view()),  # Создание мед. помощи POST
+    path(r'first_aid/<int:pk>/', views.get_first_aid_detail, name='First_aid_Detail'),  # Одна мед. помощи
+    path(r'first_aid/<int:pk>/put/', views.update_first_aid, name='First_aid_Detail-put'),  # Обновление мед. помощи
+    path(r'first_aid/create/', views.create_first_aid),  # Создание мед. помощи POST
     path(r'first_aid/delete/<int:id>', views.delete_first_aid_api),  # Удаление мед. помощи
     path(r'first_aid/add_to_trauma/<int:id>', views.add_first_aid_to_trauma),  # Добавление услуги в заявку
 
@@ -54,6 +55,11 @@ urlpatterns = [
     # # API first_aid_trauma
     # path(r'trauma_first_aid_list/', views.first_aid_list),  # получение списка м-м
     path(r'trauma/<int:id>/delete_first_aid/<int:id2>', views.del_trauma),  # удаление мед. помощи из заявки-поражения
-    path(r'first_aid_trauma/<int:id>/<int:id2>/put', views.put_first_aid_trauma)
+    path(r'first_aid_trauma/<int:id>/<int:id2>/put', views.put_first_aid_trauma),
+
+    path(r'auth/register/', auth_session.register, name='register'),
+    path(r'auth/login/', auth_session.login, name='login'),
+    path(r'auth/', auth_session.user, name='logout'),
+    path(r'auth/logout/', auth_session.logout, name='logout'),
 
 ]

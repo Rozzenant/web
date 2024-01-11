@@ -1,9 +1,8 @@
-from bmstu_lab.models import First_aid, Trauma, First_aid_Trauma
+from bmstu_lab.models import First_aid, Trauma, First_aid_Trauma, Users
 from rest_framework import serializers
 
 
 class First_aid_Serializer(serializers.ModelSerializer):
-
     class Meta:
         model = First_aid
         fields = ['First_aid_ID',
@@ -13,8 +12,6 @@ class First_aid_Serializer(serializers.ModelSerializer):
                   'Price']
 
 
-
-
 class Trauma_Serializer(serializers.ModelSerializer):
     Creator_Name = serializers.SerializerMethodField()
     Moderator_Name = serializers.SerializerMethodField()
@@ -22,20 +19,19 @@ class Trauma_Serializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_Creator_Name(obj):
-        return obj.Creator.Username if obj.Creator else None
+        return obj.Creator.username if obj.Creator else None
 
     @staticmethod
     def get_Moderator_Name(obj):
-        return obj.Moderator.Username if obj.Moderator else None
+        return obj.Moderator.username if obj.Moderator else None
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         # show_time = self.context.get('show_time', True)
-        show_traumas = self.context.get('show_traumas', True)
-
-        if not show_traumas:
-            representation.pop('First_aid_in_Trauma_List', None)
-
+        # show_traumas = self.context.get('show_traumas', True)
+        #
+        # if not show_traumas:
+        #     representation.pop('First_aid_in_Trauma_List', None)
 
         return representation
 
@@ -57,3 +53,37 @@ class First_aid_Trauma_Serializer(serializers.ModelSerializer):
     class Meta:
         model = First_aid_Trauma
         fields = '__all__'
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Users
+        fields = ['id', 'username', 'Is_Super', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
+
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        instance = self.Meta.model(**validated_data)
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
+
+
+class UsersSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = Users
+        fields = ['id', 'username', 'Is_Super']
+
+    def create(self, validated_data):
+        user = Users.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password'],
+            Is_Super=validated_data.get('Is_Super', False)
+        )
+        return user
