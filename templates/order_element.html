@@ -3,5 +3,5 @@
     <img class="img-service" src="{{ element.link }}" alt="" width="267px" height="200px">
     </a>
     <a class="medicine-service-link" href="{% url 'order_url' element.id %}">{{ element.title }} </a>
-    <div class="medicine-service-description">{{ element.description }}</div>
+    <div class="medicine-service-description">{{ element.description | slice:":150" }}</div>
  </div>
